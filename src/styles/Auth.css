@@ -1,0 +1,70 @@
+.auth-card {
+  background: #2C343F;
+  padding: 40px;
+  border-radius: 12px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+  text-align: center;
+  color: #fff;
+  max-width: 400px;
+  width: 100%;
+  font-family: "Arial Narrow", sans-serif;
+}
+
+.auth-card h2 {
+  font-size: 2rem;
+  margin-bottom: 20px;
+  font-family: 'Arial Narrow', sans-serif;
+  font-weight: bold;
+}
+
+.auth-card input {
+  width: 100%;
+  padding: 12px;
+  margin: 10px 0;
+  border: none;
+  border-radius: 8px;
+  font-size: 1rem;
+  font-family: 'Arial Narrow', sans-serif;
+  box-sizing: border-box;
+}
+
+.auth-card input::placeholder {
+  color: #F27405; /* Оранжевый, как цитата на Welcome */
+  font-style: italic;
+  width: 100%; /* Поле ввода теперь совпадает по ширине с кнопками */
+  padding: 12px;
+  margin: 10px 0;
+  border: none;
+  border-radius: 8px;
+  font-size: 1rem;
+  font-family: 'Arial Narrow', sans-serif;
+  box-sizing: border-box;
+}
+
+.auth-card button {
+  background-color: #00B021;
+  color: white;
+  padding: 12px;
+  font-size: 1.2rem;
+  text-decoration: none;
+  border-radius: 8px;
+  transition: background 0.3s ease, transform 0.2s ease;
+  width: 100%;
+  margin-top: 15px;
+  font-family: 'Arial Narrow', sans-serif;
+  font-weight: bold;
+}
+
+.auth-card button:hover {
+  background-color: #F27405;
+  transform: scale(1.05);
+}
+
+.auth-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh; /* Занимает весь экран */
+  width: 100vw;  /* Добавлено: контейнер займет всю ширину */
+  background: #14171C; /* Тёмный фон, как на главной */
+}

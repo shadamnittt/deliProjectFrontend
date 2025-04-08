@@ -1,0 +1,45 @@
+.movie-card {
+    background-color: #1c1c1c; /* Тёмно-серый фон карточки */
+    border-radius: 12px;
+    overflow: hidden;
+    width: 200px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.5);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+  }
+  
+  .movie-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 15px rgba(255, 128, 0, 0.5); /* Оранжевая подсветка */
+  }
+  
+  .movie-poster {
+    width: 100%;
+    height: 300px;
+    object-fit: cover;
+    border-radius: 12px 12px 0 0;
+  }
+  
+  .movie-info {
+    padding: 10px;
+    text-align: center;
+  }
+  
+  .movie-title {
+    color: #ffffff;
+    font-size: 16px;
+    font-weight: bold;
+    margin-bottom: 5px;
+  }
+  
+  .movie-year {
+    color: #40bcf4; /* Голубой цвет для года */
+    font-size: 14px;
+  }
+  
+  .centered-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh; /* Центрирование по всей высоте экрана */
+  }
+  
