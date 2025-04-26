@@ -1,28 +1,40 @@
-import { useState } from "react";
+import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import "../styles/Auth.css"; // Подключаем стили
 import axios from "axios";
+import { jwtDecode } from "jwt-decode";
+import "../styles/Auth.css";
+import { useAuth } from "../auth";
 
 const LoginForm = () => {
-  const [email, setEmail] = useState("");
+  const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const navigate = useNavigate();
+  const { login } = useAuth();
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    console.log("Logging in with:", email, password);
 
-    axios.post("http://localhost:8000/auth/login", {
-      email: email,
-      password: password,
-    })
-        .then((response) => {
-          debugger;
-          console.log("Login response:", response.data);
-          localStorage.setItem("access_token", response.data.access_token);
-        })
-    // После успешного логина редирект на главную страницу
-    navigate("/home");
+    try {
+      const response = await axios.post("http://localhost:8000/auth/login", {
+        username,
+        password,
+      });
+
+      const token = response.data.access_token;
+      const decoded = jwtDecode(token);
+
+      // Сохраняем токен, обновляем auth-контекст
+      login(token);
+
+      // Редирект в зависимости от роли
+      if (decoded.role === "admin") {
+        navigate("/admin");
+      } else {
+        navigate("/home");
+      }
+    } catch (error) {
+      console.error("Login error:", error);
+    }
   };
 
   return (
@@ -32,16 +44,16 @@ const LoginForm = () => {
         <form onSubmit={handleSubmit}>
           <input
             type="text"
-            value={email}
-            onChange={(e) => setEmail(e.target.value)}
-            placeholder="Enter your stage name..."
+            value={username}
+            onChange={(e) => setUsername(e.target.value)}
+            placeholder="Enter your username..."
             required
           />
           <input
             type="password"
             value={password}
             onChange={(e) => setPassword(e.target.value)}
-            placeholder="Your secret script..."
+            placeholder="Enter your password..."
             required
           />
           <button type="submit">Login</button>

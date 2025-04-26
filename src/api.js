@@ -5,7 +5,7 @@ export async function loginUser(username, password) {
   formData.append("username", username);
   formData.append("password", password);
 
-  const response = await fetch("http://127.0.0.1:8000/login", {
+  const response = await fetch(`${API_URL}/auth/login`, {
     method: "POST",
     headers: { "Content-Type": "application/x-www-form-urlencoded" },
     body: formData,
@@ -20,19 +20,16 @@ export async function loginUser(username, password) {
   return data;
 }
 
-
 export async function registerUser(username, password) {
-  const response = await fetch(`${API_URL}/register`, {
+  const response = await fetch(`${API_URL}/auth/register`, {
     method: "POST",
     headers: { "Content-Type": "application/json" },
-    body: JSON.stringify({ username, password }), // Убираем email, так как он не используется на бэке
+    body: JSON.stringify({ username, password }),
   });
 
   if (!response.ok) throw new Error("Registration failed");
 
   const data = await response.json();
-  localStorage.setItem("access_token", data.access_token); // Сохраняем токен после регистрации
+  localStorage.setItem("access_token", data.access_token);
   return data;
 }
-
-
